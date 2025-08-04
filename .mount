@@ -1,0 +1,19 @@
+  .mount: Bağlama birimi 
+ - Dosya sistemini otomatik olarak bağlar.
+ - Disk ya da ağ paylaşımını sistem açılışında bağlamak için kullanılır.
+ ````bash 
+data.mount // data bağlamak için 
+ ````
+ CONTENT:
+
+[Unit]
+Description=Data diskini bağla
+
+[Mount]
+What=/dev/sdb1 // bağlanacak aygıtı belirtir
+Where=/data  // diskin bağlanacağı yeri belirtir
+Type=ext4  // diskin dosya sistemi türünü belirtir
+
+[Install]
+WantedBy=multi-user.target // ne zaman çalışacağını belirtir
+
