@@ -1,0 +1,16 @@
+.socket : servisin sadece istemci bağlantısı olduğunda başlaması istendiğinde kullanılır.
+example: ssh gibi kullanıcı bağlandığında başlar.
+
+SOCKET FILE:
+[Socket] // sistemin hangi bağlantıyı dinleyeceği belirtilir
+ListenStream=12345 // TCP portu 12345 üzerinden gelen bağlantıları dinler (Eğer ListenDatagram= olsaydı bu sefer UDP dinlenirdi.
+Eğer IP belirtilmezse tüm arayüzlerden gelen bağlantıları kabul eder (0.0.0.0:12345 gibi))
+Accept=true // true olduğunda her bağlantı için ayrı service başlar, false da tüm bağlantılar tek servisten yönetilir.
+
+[Install]  //socket etkinleştiğinde ilişkilendirilecek olan hedef belirtilir.
+WantedBy=sockets.target // sistem açıldığında socket aktifleşir
+
+SERVİCE FILE:
+[Service] 
+ExecStart=/usr/local/bin/istemci_karsila.sh 
+
